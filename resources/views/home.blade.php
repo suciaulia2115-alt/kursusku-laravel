@@ -1,182 +1,99 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>{{ $siteName }} | Premium Learning</title>
-
-    <meta name="description" content="Kembangkan kemampuan digital bersama KursusKu.">
-
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-<body>
-
-    <div class="ambient ambient-one"></div>
-    <div class="ambient ambient-two"></div>
-
+<body id="beranda">
     <header class="navbar">
         <div class="container nav-inner">
-            <a href="{{ route('home') }}" class="brand">
+            <a href="{{ route('home') }}" class="brand" aria-label="KursusKu Beranda">
                 <span class="brand-mark">K</span>
                 <span>Kursus<span class="brand-gold">Ku</span></span>
             </a>
-
-            <nav class="nav-links">
-                <a href="#beranda" class="nav-link active">Beranda</a>
-                <a href="#kursus" class="nav-link">Kursus</a>
-                <a href="#tentang" class="nav-link">Tentang</a>
+            <nav class="nav-links" aria-label="Navigasi utama">
+                <a class="nav-link active" href="{{ route('home') }}" >Beranda</a>
+                <a class="nav-link" href="#kursus">Kursus</a>
+                <a class="nav-link" href="#tentang">Tentang</a>
             </nav>
-
-            <a href="#kursus" class="nav-button">
-                Mulai Belajar <span>↗</span>
+            <a class="nav-button" href="#kursus">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5L2 9Z"/><path d="M6 11v6c4 3 8 3 12 0v-6M22 9v8"/></svg>
+                Mulai Belajar <span aria-hidden="true">→</span>
             </a>
         </div>
     </header>
 
     <main>
-        <section class="hero container" id="beranda">
-            <div class="hero-content">
-                <div class="eyebrow">
-                    <span class="eyebrow-line"></span>
-                    <span>THE ART OF LEARNING</span>
-                    <span class="eyebrow-line"></span>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container hero-inner">
+                <div class="hero-copy">
+                    <p class="eyebrow">— THE ART OF LEARNING —</p>
+                    <h1 id="hero-title">Investasi Terbaik Adalah <em>Dirimu.</em></h1>
+                    <p class="hero-description">Temukan pengalaman belajar digital yang lebih bermakna. Asah keterampilan, perluas wawasan, dan persiapkan masa depanmu bersama KursusKu.</p>
+                    <div class="hero-actions">
+                        <a href="#kursus" class="cta cta-primary">▣ &nbsp; Jelajahi Kursus <span aria-hidden="true">→</span></a>
+                        <a href="#tentang" class="cta cta-secondary">♧ &nbsp; Kenali KursusKu</a>
+                    </div>
+                    <div class="benefits">
+                        <div class="benefit"><span class="benefit-icon">▤</span><span><strong>Kursus Berkualitas</strong><small>Materi terstruktur</small></span></div>
+                        <div class="benefit"><span class="benefit-icon">♜</span><span><strong>Instruktur Profesional</strong><small>Belajar dari ahli</small></span></div>
+                        <div class="benefit"><span class="benefit-icon">▥</span><span><strong>Sertifikat Resmi</strong><small>Tingkatkan kariermu</small></span></div>
+                    </div>
                 </div>
-
-                <h1>
-                    Investasi Terbaik<br>
-                    Adalah <span class="gold-text">Dirimu.</span>
-                </h1>
-
-                <p class="hero-description">
-                    Temukan pengalaman belajar digital yang lebih bermakna.
-                    Asah keterampilan, perluas wawasan, dan persiapkan
-                    masa depanmu bersama KursusKu.
-                </p>
-
-                <div class="hero-actions">
-                    <a href="#kursus" class="button-primary">
-                        Jelajahi Kursus <span>↗</span>
-                    </a>
-
-                    <a href="#tentang" class="button-secondary">
-                        Kenali KursusKu
-                    </a>
+                <div class="hero-visual">
+                    {{-- Pilih gambar JPG jika tersedia, jika tidak gunakan PNG --}}
+                    @php
+                        $heroFile = file_exists(public_path('images/hero-kursus.jpg'))
+                            ? 'images/hero-kursus.jpg'
+                            : (file_exists(public_path('images/hero-kursus.png')) ? 'images/hero-kursus.png' : null);
+                    @endphp
+                    @if ($heroFile)
+                        <img class="hero-image" src="{{ asset($heroFile) }}" alt="Ilustrasi belajar bersama KursusKu">
+                    @else
+                        <div class="hero-image-fallback">KursusKu<br>Belajar • Berkembang • Sukses</div>
+                    @endif
                 </div>
-
-                <div class="hero-note">
-                    <span class="note-dot"></span>
-                    Belajar dengan tujuan. Berkembang dengan percaya diri.
-                </div>
-            </div>
-            <div class="hero-image">
-    <img
-        src="{{ asset('images/hero-kursus.png') }}"
-        alt="Suasana belajar digital KursusKu"
-    >   
-            </div>
-            <div class="hero-decoration" aria-hidden="true">
-                <div class="orbit orbit-one"></div>
-                <div class="orbit orbit-two"></div>
-                <div class="orbit orbit-three"></div>
-                <div class="orbit-core">
-                    <span class="core-k">K</span>
-                    <span class="core-caption">LEARN · GROW · EXCEL</span>
-                </div>
-                <span class="spark spark-one">✦</span>
-                <span class="spark spark-two">✧</span>
-                <span class="spark spark-three">✦</span>
-            </div>
-
-            <div class="hero-bottom-line">
-                <span>KNOWLEDGE IS YOUR GREATEST ASSET</span>
-                <span>EST. KURSUSKU</span>
             </div>
         </section>
 
-        <section class="courses-section" id="kursus">
+        <section id="kursus" class="courses-section">
             <div class="container">
                 <div class="section-heading">
-                    <div>
-                        <span class="section-kicker">PILIH JALUR BELAJARMU</span>
-                        <h2>Kursus <span class="gold-text">Unggulan.</span></h2>
-                    </div>
-
-                    <p>
-                        Langkah kecil hari ini, kemampuan besar di masa depan.
-                    </p>
+                    <span class="section-kicker">PILIHAN BELAJAR</span>
+                    <h2>Kursus Unggulan</h2>
+                    <p>Temukan materi yang sesuai dengan minat dan kebutuhanmu.</p>
                 </div>
-
                 <div class="courses">
                     @foreach ($featured as $course)
                         <article class="course-card">
-                            <div class="card-top">
-                                <span class="course-code">
-                                    {{ $course['code'] }}
-                                </span>
-                                <span class="card-arrow">↗</span>
-                            </div>
-
-                            <div class="card-symbol" aria-hidden="true">
-                                @if ($course['code'] === 'WEB-01')
-                                    &lt;/&gt;
-                                @elseif ($course['code'] === 'PHP-01')
-                                    { }
-                                @else
-                                    ✧
-                                @endif
-                            </div>
-
+                            <span class="course-code">{{ $course['code'] }}</span>
                             <h3>{{ $course['name'] }}</h3>
-
                             <p>{{ $course['description'] }}</p>
-
-                            <a href="#tentang" class="course-link">
-                                Kenali Materi <span>→</span>
-                            </a>
+                            <a class="course-link" href="#tentang">Pelajari lebih lanjut →</a>
                         </article>
                     @endforeach
                 </div>
             </div>
         </section>
 
-        <section class="about-section" id="tentang">
+        <section id="tentang" class="about-section">
             <div class="container about-inner">
-                <span class="section-kicker">LEARN WITH PURPOSE</span>
-
-                <h2>
-                    Bukan sekadar belajar.<br>
-                    <span class="gold-text">Saatnya bertumbuh.</span>
-                </h2>
-
-                <p>
-                    KursusKu hadir sebagai ruang untuk membangun pengetahuan
-                    dan keterampilan digital secara bertahap, terarah,
-                    dan berkelanjutan.
-                </p>
-
-                <a href="#kursus" class="button-primary">
-                    Temukan Kursusmu <span>↗</span>
-                </a>
+                <span class="section-kicker">TENTANG KAMI</span>
+                <h2>Belajar Lebih Nyaman Bersama KursusKu</h2>
+                <p>KursusKu menghadirkan pengalaman belajar yang terstruktur, fleksibel, dan mudah diakses untuk membantu mengembangkan keterampilan digital.</p>
+                <a href="#kursus" class="cta cta-primary">Lihat Kursus →</a>
             </div>
         </section>
     </main>
 
     <footer class="footer">
         <div class="container footer-inner">
-            <a href="{{ route('home') }}" class="brand footer-brand">
-                <span class="brand-mark">K</span>
-                <span>Kursus<span class="brand-gold">Ku</span></span>
-            </a>
-
-            <p>
-                &copy; {{ date('Y') }} {{ $siteName }}.
-                Belajar, bertumbuh, dan melangkah lebih jauh.
-            </p>
-
-            <a href="#beranda" class="back-top">Kembali ke atas ↑</a>
+            <strong>Kursus<span style="color:#d6a65f">Ku</span></strong>
+            <p>© {{ date('Y') }} KursusKu. Belajar • Berkembang • Sukses.</p>
+            <a href="{{ route('home') }}">Kembali ke atas ↑</a>
         </div>
     </footer>
-
 </body>
 </html>
