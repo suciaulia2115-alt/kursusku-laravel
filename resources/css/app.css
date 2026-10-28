@@ -7,3 +7,15 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Warna dasar KursusKu Premium */
+body {
+    background: #FBF5ED;
+    color: #49382E;
+}
+
+.navbar-brand {
+    font-weight: 800;
+}

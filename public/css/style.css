@@ -33,3 +33,337 @@ a{text-decoration:none;color:inherit}button{font:inherit}.container{width:min(14
 @media(max-width:1050px){.nav-inner{flex-wrap:wrap;justify-content:center;padding:16px 0}.hero-inner{grid-template-columns:1fr}.hero-copy{text-align:center}.hero-description{margin-inline:auto}.hero-actions,.benefits{justify-content:center}.hero-visual{max-width:760px;width:100%;margin:auto}.courses{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.container{width:92%}.nav-inner{gap:12px}.nav-links{order:3;width:100%;justify-content:center;gap:22px;padding:12px 14px;font-size:13px}.nav-button{padding:12px 16px;font-size:12px}.brand{font-size:24px}.brand-mark{width:42px;height:42px}.hero{padding:65px 0}.hero h1{font-size:clamp(39px,10vw,57px);letter-spacing:-1px}.eyebrow{font-size:10px;letter-spacing:2px}.benefits{gap:15px}.courses{grid-template-columns:1fr}.footer-inner{flex-direction:column;text-align:center}.hero-image-fallback{min-height:250px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+/* PERBAIKAN NAVBAR PERTEMUAN 9 */
+
+/* Menampilkan menu pada layar komputer */
+@media (min-width: 992px) {
+    .navbar #mainNavbar {
+        display: flex !important;
+        flex-grow: 1;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navbar #mainNavbar .nav-links {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        gap: 28px;
+    }
+
+    .navbar #mainNavbar .nav-link {
+        display: inline-block;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .navbar #mainNavbar .nav-link:hover {
+        color: #d6a65f;
+    }
+}
+
+/* Menampilkan tombol menu pada layar HP */
+@media (max-width: 991.98px) {
+    .navbar .navbar-toggler {
+        border: 1px solid #d6a65f;
+        color: #ffffff;
+    }
+
+    .navbar .navbar-toggler-icon {
+        filter: invert(1);
+    }
+
+    .navbar #mainNavbar.show {
+        display: block;
+        width: 100%;
+    }
+
+    .navbar #mainNavbar .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px 0;
+    }
+
+    .navbar #mainNavbar .nav-link {
+        color: #ffffff;
+    }
+}
+
+/* ===================================
+   PERBAIKAN NAVBAR KURSUSKU
+   PERTEMUAN 9
+=================================== */
+
+/* Tampilan komputer */
+@media (min-width: 992px) {
+
+    .navbar .kursusku-menu {
+        display: flex !important;
+        flex: 1 1 auto;
+        justify-content: center;
+        align-items: center;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .navbar .kursusku-menu .nav-links {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        width: auto;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .navbar .kursusku-menu .nav-link {
+        display: inline-block !important;
+        color: #ffffff !important;
+        font-size: 15px;
+        font-weight: 500;
+        text-decoration: none;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .navbar .kursusku-menu .nav-link:hover {
+        color: #d6a65f !important;
+    }
+}
+
+/* Tampilan HP */
+@media (max-width: 991.98px) {
+
+    .navbar .kursusku-menu.show {
+        display: block !important;
+        width: 100%;
+        visibility: visible !important;
+    }
+
+    .navbar .kursusku-menu .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 20px 0;
+    }
+
+    .navbar .kursusku-menu .nav-link {
+        display: block;
+        color: #ffffff !important;
+    }
+
+    .navbar .navbar-toggler {
+        border: 1px solid #d6a65f;
+    }
+
+    .navbar .navbar-toggler-icon {
+        filter: invert(1);
+    }
+}
+
+/* ==========================================
+   KURSUSKU - PREMIUM ENROLLMENT PAGE
+========================================== */
+
+.enrollment-page {
+    position: relative;
+    overflow: hidden;
+    min-height: 85vh;
+    padding: 85px 20px 110px;
+    background:
+        radial-gradient(circle at 85% 15%, #ead3b4 0%, transparent 35%),
+        linear-gradient(135deg, #fffaf4, #f5e9db);
+}
+
+.enrollment-page::before {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border: 1px solid rgba(169, 122, 71, .18);
+    border-radius: 50%;
+    top: -180px;
+    right: -130px;
+    pointer-events: none;
+}
+
+.enrollment-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    background: #fffdf9;
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow: 0 25px 70px rgba(76, 50, 32, .12);
+}
+
+.enrollment-intro {
+    padding: 65px 45px;
+    background: linear-gradient(155deg, #61493c, #36271f);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.enrollment-kicker {
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: #e5bc80;
+    margin-bottom: 25px;
+}
+
+.enrollment-intro h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(35px, 3.5vw, 52px);
+    line-height: 1.18;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+.enrollment-intro h1 em {
+    color: #dfb578;
+    font-style: italic;
+}
+
+.enrollment-intro p {
+    color: #e5d8ce;
+    line-height: 1.9;
+    font-size: 15px;
+}
+
+.enrollment-benefits {
+    margin-top: 35px;
+    display: grid;
+    gap: 16px;
+}
+
+.enrollment-benefit {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    font-size: 14px;
+    color: #f4e7db;
+}
+
+.enrollment-benefit-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgba(223, 181, 120, .4);
+    border-radius: 10px;
+    color: #e5bc80;
+}
+
+.enrollment-form-area {
+    padding: 60px 55px;
+}
+
+.enrollment-form-area h2 {
+    font-family: Georgia, serif;
+    font-size: 34px;
+    color: #49382e;
+    margin-bottom: 12px;
+}
+
+.enrollment-subtitle {
+    color: #88786c;
+    margin-bottom: 35px;
+    line-height: 1.7;
+}
+
+.enrollment-form-area .form-label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #59463a;
+    margin-bottom: 10px;
+}
+
+.enrollment-form-area .form-control,
+.enrollment-form-area .form-select {
+    border: 1px solid #e7dcd1;
+    background: #fffaf5;
+    border-radius: 12px;
+    min-height: 54px;
+    padding: 13px 16px;
+    color: #49382e;
+}
+
+.enrollment-form-area .form-control:focus,
+.enrollment-form-area .form-select:focus {
+    border-color: #c99b62;
+    box-shadow: 0 0 0 4px rgba(201, 155, 98, .15);
+    background: #fff;
+}
+
+.enrollment-availability {
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 14px;
+    margin-top: 22px;
+}
+
+.enrollment-submit {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 13px;
+    padding: 17px 22px;
+    margin-top: 22px;
+    background: linear-gradient(135deg, #dcb477, #ae7843);
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.enrollment-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(174, 120, 67, .25);
+}
+
+.enrollment-note {
+    margin-top: 20px;
+    text-align: center;
+    color: #99897e;
+    font-size: 12px;
+}
+
+@media (max-width: 850px) {
+    .enrollment-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .enrollment-intro {
+        padding: 40px 30px;
+    }
+
+    .enrollment-form-area {
+        padding: 40px 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .enrollment-page {
+        padding: 35px 14px 60px;
+    }
+
+    .enrollment-intro h1 {
+        font-size: 34px;
+    }
+
+    .enrollment-form-area h2 {
+        font-size: 28px;
+    }
+}
