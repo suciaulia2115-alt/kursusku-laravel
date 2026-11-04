@@ -1,11 +1,25 @@
+
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| ROUTE HALAMAN UTAMA
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
+
+/*
+|--------------------------------------------------------------------------
+| ROUTE PENDAFTARAN
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/pendaftaran', function () {
 
@@ -18,7 +32,6 @@ Route::get('/pendaftaran', function () {
     return view('enrollments.create', compact('courses'));
 
 })->name('enrollments.create');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +55,6 @@ Route::post('/pendaftaran/preview', function (Request $request) {
         ->withInput();
 
 })->name('enrollments.preview');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -72,3 +84,11 @@ Route::get('/courses/{course}/availability', function (int $course) {
     return response()->json($availability[$course]);
 
 })->name('courses.availability');
+
+/*
+|--------------------------------------------------------------------------
+| ROUTE CRUD KURSUS - PRAKTIKUM PERTEMUAN 10
+|--------------------------------------------------------------------------
+*/
+
+Route::resource('courses', CourseController::class);

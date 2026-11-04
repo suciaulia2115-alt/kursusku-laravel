@@ -367,3 +367,159 @@ a{text-decoration:none;color:inherit}button{font:inherit}.container{width:min(14
         font-size: 28px;
     }
 }
+/* ==========================================
+   KURSUSKU - COURSE MANAGEMENT
+   PRAKTIKUM PERTEMUAN 10
+========================================== */
+
+.course-management {
+    min-height: 85vh;
+    padding: 75px 0;
+    background: linear-gradient(135deg, #fbf5ed, #f0e2d1);
+}
+
+.course-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.course-header h1 {
+    font: 400 clamp(32px, 4vw, 48px) Georgia, serif;
+    color: #49382e;
+    margin-bottom: 10px;
+}
+
+.course-header p {
+    color: #746357;
+}
+
+.course-panel {
+    background: #fffdf9;
+    border: 1px solid #dfc7a9;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 15px 40px #59483f15;
+}
+
+.course-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.course-table th {
+    background: #59483f;
+    color: #fff5e9;
+    padding: 16px 13px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.course-table td {
+    padding: 16px 13px;
+    border-bottom: 1px solid #eadfd2;
+    color: #59483f;
+    font-size: 14px;
+}
+
+.course-table tbody tr:hover {
+    background: #fbf5ed;
+}
+
+.course-badge {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.course-badge.open {
+    background: #e3efe3;
+    color: #426b46;
+}
+
+.course-badge.draft {
+    background: #f5ead6;
+    color: #896337;
+}
+
+.course-badge.closed {
+    background: #f3dfdc;
+    color: #99564c;
+}
+
+.course-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 22px;
+    border: none;
+    border-radius: 9px;
+    background: linear-gradient(125deg, #e7b76e, #89603f 65%, #c8914e);
+    color: white;
+    font-weight: 700;
+    transition: .25s;
+}
+
+.course-button:hover {
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px #59483f25;
+}
+
+.course-form {
+    max-width: 850px;
+    margin: auto;
+    background: #fffdf9;
+    border: 1px solid #dfc7a9;
+    border-radius: 22px;
+    padding: 35px;
+    box-shadow: 0 20px 50px #59483f15;
+}
+
+.course-form .form-label {
+    color: #59483f;
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.course-form .form-control,
+.course-form .form-select {
+    border: 1px solid #dfc7a9;
+    background: #fffaf5;
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: #49382e;
+}
+
+.course-form .form-control:focus,
+.course-form .form-select:focus {
+    border-color: #c79757;
+    box-shadow: 0 0 0 4px #c7975725;
+}
+
+.course-empty {
+    text-align: center;
+    padding: 35px;
+    color: #88786c;
+}
+
+@media(max-width: 768px) {
+    .course-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .course-panel,
+    .course-form {
+        padding: 20px;
+    }
+
+    .course-table th,
+    .course-table td {
+        padding: 12px 10px;
+    }
+}

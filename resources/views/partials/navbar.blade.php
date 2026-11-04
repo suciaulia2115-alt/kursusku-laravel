@@ -1,6 +1,7 @@
 
 <header class="navbar navbar-expand-lg">
     <div class="container nav-inner">
+
         <a href="{{ route('home') }}"
            class="brand"
            aria-label="KursusKu Beranda">
@@ -29,6 +30,7 @@
              aria-label="Navigasi utama">
 
             <div class="nav-links ms-lg-auto">
+
                 <a class="nav-link active"
                    href="{{ route('home') }}">
                     Beranda
@@ -37,6 +39,12 @@
                 <a class="nav-link"
                    href="{{ route('home') }}#kursus">
                     Kursus
+                </a>
+
+                <!-- MENU COURSE -->
+                <a class="nav-link"
+                   href="{{ route('courses.index') }}">
+                    Course
                 </a>
 
                 <a class="nav-link"
@@ -48,13 +56,15 @@
                    href="{{ url('/pendaftaran') }}">
                     Pendaftaran
                 </a>
+
             </div>
         </nav>
 
         <a class="nav-button d-none d-lg-inline-flex"
-           href="{{ route('home') }}#kursus">
+           href="{{ route('courses.create') }}">
             Mulai Belajar
             <span aria-hidden="true">→</span>
         </a>
+
     </div>
 </header>

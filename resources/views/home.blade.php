@@ -23,7 +23,7 @@
                 </p>
 
                 <div class="hero-actions">
-                    <a href="#kursus" class="cta cta-primary">
+                    <a href="{{ route('courses.create') }}"class="cta cta-primary">
                         ▣ &nbsp; Jelajahi Kursus
                         <span aria-hidden="true">→</span>
                     </a>
