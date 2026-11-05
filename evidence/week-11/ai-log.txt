@@ -1,0 +1,44 @@
+AI LOG – KURSUSKU (MEETING 11)
+Tanggal: 5 November 2026
+Proyek: KursusKu – Aplikasi manajemen kursus berbasis Laravel
+
+Tujuan penggunaan AI
+ChatGPT digunakan sebagai pendamping untuk memahami langkah praktikum Laravel, memeriksa alur CRUD kursus, membantu pengujian validasi, dan menyusun dokumentasi pengujian.
+
+Ringkasan bantuan
+1. Membantu memeriksa route CRUD kursus melalui perintah:
+   php artisan route:list --name=courses
+2. Menjelaskan cara memeriksa halaman detail kursus (Course Show).
+3. Menjelaskan cara membuka halaman edit kursus (Course Edit).
+4. Membantu menyusun skenario validasi kode kursus duplikat menggunakan kode web-101.
+5. Menjelaskan skenario validasi kuota melebihi batas maksimal, yaitu 501.
+6. Membantu mendokumentasikan hasil perubahan data kursus (Update Success).
+7. Membantu mendokumentasikan penghapusan data kursus percobaan (Delete Success).
+8. Membantu menyusun Test Matrix dalam format PDF dan Excel.
+
+Hasil yang telah dikonfirmasi pengguna
+- Fitur tambah kursus berhasil.
+- Fitur detail kursus berhasil ditampilkan.
+- Fitur edit dan update berhasil, termasuk pesan keberhasilan.
+- Fitur hapus kursus percobaan berhasil.
+- Pengujian kode duplikat menampilkan pesan: "The code has already been taken."
+
+Catatan verifikasi
+- Pengujian kuota 501 perlu dipastikan melalui hasil aktual pada aplikasi sebelum statusnya ditulis "Berhasil" di Test Matrix.
+- Screenshot bukti harus merupakan tangkapan layar aktual dari aplikasi/terminal pengguna.
+- AI digunakan sebagai alat bantu. Pengujian dan verifikasi akhir tetap dilakukan oleh pengguna.
+
+Berkas dokumentasi
+- 01-route-list.png
+- 02-course-show.png
+- 03-course-edit.png
+- 04-validation-duplicate-code.png
+- 05-validation-quota-501.png
+- 06-update-success.png
+- 07-delete-success.png
+- test-matrix.pdf
+- test-matrix.xlsx
+- ai-log.txt
+
+Lokasi penyimpanan:
+evidence/meeting-11/
