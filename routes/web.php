@@ -3,7 +3,7 @@
 
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\EnrollmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,44 +17,25 @@ Route::get('/', [HomeController::class, 'index'])
 
 /*
 |--------------------------------------------------------------------------
-| ROUTE PENDAFTARAN
+| ROUTE PENDAFTARAN KURSUS - PERTEMUAN 12
 |--------------------------------------------------------------------------
 */
 
-Route::get('/pendaftaran', function () {
-
-    $courses = [
-        1 => ['name' => 'Web Dasar'],
-        2 => ['name' => 'PHP Dasar'],
-        3 => ['name' => 'Laravel Dasar'],
-    ];
-
-    return view('enrollments.create', compact('courses'));
-
-})->name('enrollments.create');
+Route::resource('enrollments', EnrollmentController::class)
+    ->only(['index', 'create', 'store']);
 
 /*
 |--------------------------------------------------------------------------
-| ROUTE PROSES FORMULIR
+| ROUTE PENDAFTARAN LAMA
 |--------------------------------------------------------------------------
+| Mempertahankan alamat halaman pendaftaran sebelumnya.
 */
 
-Route::post('/pendaftaran/preview', function (Request $request) {
+Route::get('/pendaftaran', [EnrollmentController::class, 'create'])
+    ->name('pendaftaran.create');
 
-    $data = $request->validate([
-        'name' => ['required', 'string', 'min:3', 'max:100'],
-        'email' => ['required', 'email'],
-        'course_id' => ['required', 'integer', 'in:1,2,3'],
-    ]);
-
-    return back()
-        ->with(
-            'success',
-            'Formulir berhasil divalidasi. Data belum disimpan ke database.'
-        )
-        ->withInput();
-
-})->name('enrollments.preview');
+Route::post('/pendaftaran/preview', [EnrollmentController::class, 'store'])
+    ->name('pendaftaran.preview');
 
 /*
 |--------------------------------------------------------------------------
@@ -87,8 +68,9 @@ Route::get('/courses/{course}/availability', function (int $course) {
 
 /*
 |--------------------------------------------------------------------------
-| ROUTE CRUD KURSUS - PRAKTIKUM PERTEMUAN 10
+| ROUTE CRUD KURSUS - PERTEMUAN 10
 |--------------------------------------------------------------------------
 */
 
 Route::resource('courses', CourseController::class);
+Route::view('/erd', 'erd')->name('erd');

@@ -1,0 +1,22 @@
+AI USAGE LOG – PERTEMUAN 12
+
+Nama Proyek: KursusKu  
+Materi: Relasi Database dan Enrollment  
+Teknologi: Laravel, PHP, MySQL
+
+Penggunaan AI:
+1. Membantu memahami konsep Entity Relationship Diagram (ERD).
+2. Membantu menyusun migration untuk tabel participants dan enrollments.
+3. Membantu memahami dan menerapkan foreign key serta relasi antar tabel.
+4. Membantu membuat relasi model Course, Participant, dan Enrollment.
+5. Membantu mengembangkan EnrollmentController.
+6. Membantu membuat form pendaftaran kursus dan laporan enrollment.
+7. Membantu menguji validasi pendaftaran duplikat.
+8. Membantu menguji fitur cascade delete pada tabel courses dan participants.
+9. Membantu memeriksa hasil pengujian dan menyiapkan dokumentasi praktikum.
+
+Verifikasi:
+Seluruh kode yang digunakan diperiksa dan dijalankan pada proyek Laravel KursusKu. Pengujian dilakukan menggunakan Laravel Tinker dan browser.
+
+Catatan:
+AI digunakan sebagai alat bantu pembelajaran dan pengembangan. Implementasi serta pengujian dilakukan pada proyek secara langsung.
