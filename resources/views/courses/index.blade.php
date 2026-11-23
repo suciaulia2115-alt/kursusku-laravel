@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -72,8 +71,86 @@
         @endif
 
 
+        <!-- PENCARIAN DAN FILTER -->
+        <div class="course-panel p-4 mb-4">
+
+            <form action="{{ route('courses.index') }}" method="GET">
+
+                <div class="row g-3 align-items-end">
+
+                    <!-- PENCARIAN -->
+                    <div class="col-md-6">
+                        <label for="search" class="form-label">
+                            Cari Kursus
+                        </label>
+
+                        <input
+                            type="text"
+                            name="q"
+                            id="search"
+                            class="form-control"
+                            placeholder="Masukkan kode atau nama kursus..."
+                            value="{{ $search ?? '' }}"
+                        >
+                    </div>
+
+                    <!-- FILTER STATUS -->
+                    <div class="col-md-3">
+                        <label for="status" class="form-label">
+                            Filter Status
+                        </label>
+
+                        <select
+                            name="status"
+                            id="status"
+                            class="form-select"
+                        >
+                            <option value="">Semua Status</option>
+
+                            <option value="open"
+                                {{ ($status ?? '') === 'open' ? 'selected' : '' }}>
+                                Open
+                            </option>
+
+                            <option value="closed"
+                                {{ ($status ?? '') === 'closed' ? 'selected' : '' }}>
+                                Closed
+                            </option>
+
+                            <option value="draft"
+                                {{ ($status ?? '') === 'draft' ? 'selected' : '' }}>
+                                Draft
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- TOMBOL -->
+                    <div class="col-md-3">
+                        <div class="d-flex gap-2">
+
+                            <button type="submit"
+                                    class="course-button border-0">
+                                Cari
+                            </button>
+
+                            <a href="{{ route('courses.index') }}"
+                               class="btn btn-outline-secondary">
+                                Reset
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
         <!-- TABEL KURSUS -->
         <div class="course-panel">
+
             <div class="table-responsive">
 
                 <table class="course-table">
@@ -97,7 +174,9 @@
                         @forelse ($courses as $course)
 
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>
+                                    {{ $courses->firstItem() + $loop->index }}
+                                </td>
 
                                 <td>
                                     {{ $course->code }}
@@ -129,7 +208,7 @@
                                     </span>
                                 </td>
 
-                                <!-- AKSI DETAIL, EDIT DAN HAPUS -->
+                                <!-- AKSI -->
                                 <td>
                                     <div class="d-flex gap-2">
 
@@ -169,7 +248,7 @@
 
                             <tr>
                                 <td colspan="9" class="course-empty">
-                                    Belum ada data kursus.
+                                    Tidak ada kursus yang sesuai pencarian/filter.
                                 </td>
                             </tr>
 
@@ -180,6 +259,29 @@
                 </table>
 
             </div>
+
+
+            <!-- INFORMASI DATA DAN PAGINATION -->
+            <div class="d-flex flex-column flex-md-row
+                        justify-content-between align-items-center
+                        gap-3 p-4">
+
+                <div class="text-muted small">
+                    @if ($courses->total() > 0)
+                        Menampilkan {{ $courses->firstItem() }}
+                        sampai {{ $courses->lastItem() }}
+                        dari {{ $courses->total() }} kursus.
+                    @else
+                        Tidak ada data kursus.
+                    @endif
+                </div>
+
+                <div>
+                    {{ $courses->links() }}
+                </div>
+
+            </div>
+
         </div>
 
     </div>
