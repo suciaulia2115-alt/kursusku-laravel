@@ -1,14 +1,14 @@
-
 <?php
 
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| ROUTE HALAMAN UTAMA
+| HALAMAN UTAMA
 |--------------------------------------------------------------------------
 */
 
@@ -17,7 +17,55 @@ Route::get('/', [HomeController::class, 'index'])
 
 /*
 |--------------------------------------------------------------------------
-| ROUTE PENDAFTARAN KURSUS - PERTEMUAN 12
+| LOGIN DAN AUTENTIKASI
+|--------------------------------------------------------------------------
+*/
+
+// Halaman login
+Route::get('/login', [AuthController::class, 'showLogin'])
+    ->name('login');
+
+// Proses login
+Route::post('/login', [AuthController::class, 'login'])
+    ->name('login.process');
+
+// Halaman lupa password
+Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])
+    ->name('password.request');
+
+// Proses pengiriman tautan reset password
+Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])
+    ->name('password.email');
+
+// Halaman untuk mengatur password baru
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword'])
+    ->name('password.reset');
+
+// Proses menyimpan password baru
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])
+    ->name('password.update');
+
+/*
+|--------------------------------------------------------------------------
+| HALAMAN YANG MEMERLUKAN LOGIN
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->group(function () {
+
+    // Halaman profile
+    Route::get('/profile', [AuthController::class, 'profile'])
+        ->name('profile');
+
+    // Logout
+    Route::post('/logout', [AuthController::class, 'logout'])
+        ->name('logout');
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| PENDAFTARAN KURSUS - PERTEMUAN 12
 |--------------------------------------------------------------------------
 */
 
@@ -26,9 +74,8 @@ Route::resource('enrollments', EnrollmentController::class)
 
 /*
 |--------------------------------------------------------------------------
-| ROUTE PENDAFTARAN LAMA
+| PENDAFTARAN LAMA
 |--------------------------------------------------------------------------
-| Mempertahankan alamat halaman pendaftaran sebelumnya.
 */
 
 Route::get('/pendaftaran', [EnrollmentController::class, 'create'])
@@ -39,7 +86,7 @@ Route::post('/pendaftaran/preview', [EnrollmentController::class, 'store'])
 
 /*
 |--------------------------------------------------------------------------
-| ROUTE JSON KETERSEDIAAN KURSI
+| KETERSEDIAAN KURSI KURSUS
 |--------------------------------------------------------------------------
 */
 
@@ -50,10 +97,12 @@ Route::get('/courses/{course}/availability', function (int $course) {
             'course' => 'Web Dasar',
             'remaining' => 12,
         ],
+
         2 => [
             'course' => 'PHP Dasar',
             'remaining' => 8,
         ],
+
         3 => [
             'course' => 'Laravel Dasar',
             'remaining' => 4,
@@ -68,9 +117,17 @@ Route::get('/courses/{course}/availability', function (int $course) {
 
 /*
 |--------------------------------------------------------------------------
-| ROUTE CRUD KURSUS - PERTEMUAN 10
+| CRUD KURSUS - PERTEMUAN 10
 |--------------------------------------------------------------------------
 */
 
 Route::resource('courses', CourseController::class);
-Route::view('/erd', 'erd')->name('erd');
+
+/*
+|--------------------------------------------------------------------------
+| HALAMAN ERD
+|--------------------------------------------------------------------------
+*/
+
+Route::view('/erd', 'erd')
+    ->name('erd');

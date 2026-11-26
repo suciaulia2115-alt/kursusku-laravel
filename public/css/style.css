@@ -523,3 +523,45 @@ a{text-decoration:none;color:inherit}button{font:inherit}.container{width:min(14
         padding: 12px 10px;
     }
 }
+
+/* ==========================================
+   NAVBAR ACTIONS - LOGIN & MULAI BELAJAR
+========================================== */
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.nav-login-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 28px;
+    border: 1px solid #d6b58c;
+    border-radius: 999px;
+    background: rgba(255, 248, 239, 0.08);
+    color: #fff7ec;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+}
+
+.nav-login-button:hover {
+    background: #e7b76e;
+    border-color: #e7b76e;
+    color: #49382e;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px #edbb7c45;
+}
+
+@media (max-width: 991.98px) {
+    .nav-actions {
+        display: none;
+    }
+}
