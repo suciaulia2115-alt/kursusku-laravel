@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    // Memproses login
+    // Memproses login menggunakan username atau email
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -59,28 +60,23 @@ class AuthController extends Controller
         return view('auth.forgot-password');
     }
 
-    // Mengirim tautan reset password
+    // Memeriksa email dan langsung menuju halaman ubah password lokal
     public function sendResetLink(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'exists:users,email'],
         ], [
             'email.required' => 'Email wajib diisi.',
-            'email.email' => 'Masukkan alamat email yang valid.',
+            'email.email' => 'Format email tidak valid.',
+            'email.exists' => 'Email tidak ditemukan.',
         ]);
 
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
-
-        return $status === Password::RESET_LINK_SENT
-            ? back()->with('success', __($status))
-            : back()->withErrors([
-                'email' => __($status),
-            ]);
+        return redirect()->route('password.local.form', [
+            'email' => $request->email,
+        ]);
     }
 
-    // Menampilkan halaman reset password
+    // Menampilkan halaman reset password melalui tautan Laravel
     public function showResetPassword(Request $request, string $token)
     {
         return view('auth.reset-password', [
@@ -89,7 +85,7 @@ class AuthController extends Controller
         ]);
     }
 
-    // Memproses perubahan password
+    // Memproses reset password melalui token Laravel
     public function resetPassword(Request $request)
     {
         $request->validate([
@@ -123,7 +119,42 @@ class AuthController extends Controller
         ]);
     }
 
-    // Menampilkan profile
+    // Menampilkan halaman ubah password langsung (khusus praktikum lokal)
+    public function showLocalPasswordForm(Request $request)
+    {
+        $email = $request->query('email');
+
+        if (!$email || !User::where('email', $email)->exists()) {
+            return redirect()->route('password.request')
+                ->withErrors([
+                    'email' => 'Email tidak ditemukan.',
+                ]);
+        }
+
+        return view('auth.change-password', compact('email'));
+    }
+
+    // Menyimpan password baru
+    public function updateLocalPassword(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email', 'exists:users,email'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], [
+            'password.min' => 'Password minimal 8 karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak sama.',
+        ]);
+
+        $user = User::where('email', $request->email)->firstOrFail();
+
+        $user->password = $request->password;
+        $user->save();
+
+        return redirect()->route('login')
+            ->with('success', 'Password berhasil diubah. Silakan login kembali.');
+    }
+
+    // Menampilkan halaman profil
     public function profile()
     {
         return view('auth.profile');

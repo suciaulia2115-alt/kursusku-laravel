@@ -33,15 +33,23 @@ Route::post('/login', [AuthController::class, 'login'])
 Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])
     ->name('password.request');
 
-// Proses pengiriman tautan reset password
+// Proses pemeriksaan email
 Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])
     ->name('password.email');
 
-// Halaman untuk mengatur password baru
+// Halaman ubah password langsung (praktikum lokal)
+Route::get('/change-password', [AuthController::class, 'showLocalPasswordForm'])
+    ->name('password.local.form');
+
+// Proses menyimpan password baru
+Route::post('/change-password', [AuthController::class, 'updateLocalPassword'])
+    ->name('password.local.update');
+
+// Halaman reset password menggunakan token Laravel
 Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword'])
     ->name('password.reset');
 
-// Proses menyimpan password baru
+// Proses reset password menggunakan token Laravel
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])
     ->name('password.update');
 

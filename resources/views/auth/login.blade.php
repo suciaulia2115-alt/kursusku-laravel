@@ -247,6 +247,38 @@
             box-shadow: 0 12px 22px rgba(73, 51, 38, 0.25);
         }
 
+        /* TOMBOL KEMBALI KE BERANDA */
+        .back-home-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            width: 100%;
+            height: 48px;
+            margin-top: 13px;
+            border: 1px solid #b99a79;
+            border-radius: 10px;
+            background: transparent;
+            color: #76543c;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-home-button:hover {
+            background: #f2e6d8;
+            color: #493024;
+            border-color: #8a6549;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(73, 51, 38, 0.09);
+        }
+
+        .back-home-button span {
+            font-size: 17px;
+        }
+
         .alert {
             padding: 12px 14px;
             margin-bottom: 20px;
@@ -322,6 +354,7 @@
 
     <div class="login-container">
 
+        <!-- PANEL BRAND -->
         <section class="brand-panel">
             <div class="brand-content">
 
@@ -347,6 +380,7 @@
             </div>
         </section>
 
+        <!-- PANEL FORM LOGIN -->
         <section class="form-panel">
 
             <div class="form-heading">
@@ -374,6 +408,7 @@
             <form action="{{ route('login.process') }}" method="POST">
                 @csrf
 
+                <!-- USERNAME / EMAIL -->
                 <div class="form-group">
                     <label for="login">Username / Email</label>
 
@@ -393,6 +428,7 @@
                     @enderror
                 </div>
 
+                <!-- PASSWORD -->
                 <div class="form-group">
                     <label for="password">Password</label>
 
@@ -420,6 +456,7 @@
                     @enderror
                 </div>
 
+                <!-- INGAT SAYA DAN LUPA PASSWORD -->
                 <div class="form-options">
 
                     <label class="remember">
@@ -441,9 +478,16 @@
 
                 </div>
 
+                <!-- TOMBOL MASUK -->
                 <button type="submit" class="login-button">
                     Masuk ke Akun
                 </button>
+
+                <!-- TOMBOL KEMBALI KE BERANDA -->
+                <a href="{{ route('home') }}" class="back-home-button">
+                    <span aria-hidden="true">←</span>
+                    Kembali ke Beranda
+                </a>
 
             </form>
 
@@ -455,6 +499,7 @@
 
     </div>
 
+    <!-- SCRIPT LIHAT / SEMBUNYIKAN PASSWORD -->
     <script>
         const passwordInput = document.getElementById('password');
         const togglePassword = document.getElementById('togglePassword');

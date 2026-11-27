@@ -33,55 +33,56 @@
 
             <div class="nav-links ms-lg-auto">
 
-                <a class="nav-link active"
+                <!-- BERANDA -->
+                <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
                    href="{{ route('home') }}">
                     Beranda
                 </a>
 
+                <!-- KURSUS -->
                 <a class="nav-link"
                    href="{{ route('home') }}#kursus">
                     Kursus
                 </a>
 
-                <a class="nav-link"
+                <!-- COURSE -->
+                <a class="nav-link {{ request()->routeIs('courses.*') ? 'active' : '' }}"
                    href="{{ route('courses.index') }}">
                     Course
                 </a>
 
+                <!-- TENTANG -->
                 <a class="nav-link"
                    href="{{ route('home') }}#tentang">
                     Tentang
                 </a>
 
+                <!-- PENDAFTARAN -->
                 <a class="nav-link"
                    href="{{ url('/pendaftaran') }}">
                     Pendaftaran
                 </a>
 
-                @auth
-                    <a class="nav-link"
-                       href="{{ route('profile') }}">
-                        Profil
-                    </a>
-                @endauth
+                <!-- PROFIL: SELALU DITAMPILKAN -->
+                <a class="nav-link {{ request()->routeIs('profile') ? 'active' : '' }}"
+                   href="{{ route('profile') }}">
+                    Profil
+                </a>
 
             </div>
         </nav>
 
-        <!-- TOMBOL LOGIN, PROFIL, LOGOUT DAN MULAI BELAJAR -->
+        <!-- TOMBOL AKSI -->
         <div class="nav-actions">
 
             @guest
+                <!-- LOGIN -->
                 <a class="nav-login-button d-none d-lg-inline-flex"
                    href="{{ route('login') }}">
                     Login
                 </a>
             @else
-                <a class="nav-login-button d-none d-lg-inline-flex"
-                   href="{{ route('profile') }}">
-                    Profil
-                </a>
-
+                <!-- LOGOUT -->
                 <form action="{{ route('logout') }}"
                       method="POST"
                       class="d-none d-lg-inline-flex">
@@ -94,6 +95,7 @@
                 </form>
             @endguest
 
+            <!-- MULAI BELAJAR -->
             <a class="nav-button d-none d-lg-inline-flex"
                href="{{ route('courses.create') }}">
                 Mulai Belajar
